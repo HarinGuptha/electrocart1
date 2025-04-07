@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import 'bootstrap/dist/css/bootstrap.css';
 import CreateContext from './component/contexts/CreateContext';
 import Logincontext from './component/contexts/Logincontext';
+import 'bootstrap/dist/css/bootstrap.css'; // Bootstrap first
+import './index.css'; // Tailwind after
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

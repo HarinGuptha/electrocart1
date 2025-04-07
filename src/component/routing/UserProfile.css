@@ -1,0 +1,51 @@
+/* Container with an animated gradient background */
+.user-profile {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+    background-size: 400% 400%;
+    animation: gradientAnimation 8s ease infinite;
+    color: #ffffff; /* White text color */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Subtle shadow for better contrast */
+}
+
+/* Gradient animation */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Text styling */
+.user-profile h5,
+.user-profile h4 {
+    margin: 0;
+    padding: 10px;
+    font-family: 'Poppins', sans-serif; /* Modern, clean font */
+    font-weight: 600; /* Bold text for better visibility */
+    letter-spacing: 0.5px; /* Slight letter spacing for aesthetics */
+}
+
+.go-home-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 150px;
+  }
+  
+  .go-home-btn:hover {
+    background-color: #0056b3;
+  }

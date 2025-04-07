@@ -1,66 +1,426 @@
+/* General Card Styling */
+.card {
+    position: relative; /* For layering effects */
+    background: linear-gradient(135deg, rgba(0, 204, 255, 0.6), rgba(51, 51, 255, 0.6), rgba(255, 102, 255, 0.5));
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(20px);
+    padding: 30px;
+    width: 80%;
+    max-width: 800px;
+    text-align: center;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    /* Layered Animation Effects */
+    background-size: 400% 400%;
+    animation: gradientShift 8s infinite ease-in-out, shimmerEffect 4s infinite linear;
+  
+    overflow: hidden; /* Ensures no overflow from shimmer effect */
+  }
+  
+  /* Hover for Depth and Interaction */
+  .card:hover {
+    transform: scale(1.07) rotate(0.001deg);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+  }
+  
+  /* Add a "shimmer" layer */
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0.3) 70%, rgba(255, 255, 255, 0) 100%);
+    transform: skewX(-20deg); /* For the diagonal shimmer effect */
+    animation: shimmerSlide 3s infinite linear;
+    z-index: 1; /* Above background, below text */
+  }
+  
+  /* Ensure content stays above shimmer */
+  .card > * {
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Gradient shifting animation */
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* Shimmer effect sliding across the card */
+  @keyframes shimmerSlide {
+    0% {
+      left: -150%;
+    }
+    100% {
+      left: 150%;
+    }
+  }
+  
+  /* Parallax shimmering animation */
+  @keyframes shimmerEffect {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+  
+/* Header Icon */
 .width1 {
     width: 50px;
     height: 50px;
 }
 
-.gradient-bg {
-    background: linear-gradient(45deg, #4a90e2, #ff6e7f)
+.gradient-bg,
+.gradient-bg-footer {
+  background: linear-gradient(45deg, #4a90e2, #ff6e7f); 
+  background-size: 200% 200%; /* Enlarge gradient for more dramatic effects */
+  animation: wowGradientPulse 6s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
 }
 
-.textcolor {
-    color: #999999; 
+/* Unique pulsing and waving gradient animation */
+@keyframes wowGradientPulse {
+  0% {
+    background-position: 0% 50%;
+    filter: brightness(1); /* Normal brightness */
+  }
+  25% {
+    background-position: 50% 50%;
+    filter: brightness(1.1); /* Slightly brighter */
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: brightness(1.2); /* Glow-like effect */
+  }
+  75% {
+    background-position: 50% 50%;
+    filter: brightness(1.1); /* Dim back */
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: brightness(1); /* Reset brightness */
+  }
 }
 
+
+.footer a:hover {
+    color: #bfe9ff;
+}
+
+/* Search Input and Icon Styling */
 .search-container {
-    position: relative;
+    position:absolute;
     display: flex;
     align-items: center;
-}
+    top: 80px;
+    left: 300px;
 
+}
 .search-input {
-    padding: 10px 15px 10px 40px; 
-    border: 2px solid #007bff;
-    border-radius: 25px;
-    width: 200px; 
-    transition: border-color 0.3s ease; 
-}
-
-.search-input:focus {
+    width: 200px;
+    padding: 8px 35px 8px 12px;
+    font-size: 16px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    transition: width 0.4s ease-in-out, padding 0.4s ease-in-out;
     outline: none;
-    border-color: #6610f2;
+    color: #333;
+    margin-left: 250px;
+    margin-top: 7px;
+
+}
+.search-input:focus {
+    border-color: #66afe9;
+}
+.search-container:hover .search-input {
+    width: 300px;
+    padding: 8px 50px 8px 15px;
+
 }
 .search-icon {
     position: absolute;
-    left: 12px; 
+    margin-top: 7px;
+    right: 10px;
     font-size: 20px;
-    color: #007bff;
+    color: #666;
+    pointer-events: none;
+    transition: opacity 0.3s ease, right 0.3s ease;
+    opacity: 1;
 }
-.gradient-bg-body {
-    background: white;
-    height: 100vh;
-    padding-left: 100px;
-    color: #505071;
+.search-input:not(:placeholder-shown) + .search-icon {
+    visibility: hidden;
+    opacity: 0;
 }
-.gradient-bg-footer {
-    background: linear-gradient(45deg, #4a90e2, #ff6e7f);
+.search-container:hover .search-icon {
+    right: 15px;
 }
-.footer a:hover {
-    color: #bfe9ff; 
+
+.nav-item {
+    position: relative;
 }
-.colorcard{ 
-    border: none;
-    border-radius: 10px;
-    box-shadow: 1px 4px 12px rgba(41, 41, 41, 0.1);
+.nav-item a {
+    color: #fff; 
+    text-decoration: none;
+}
+.nav-item.active a,
+.nav-item a:hover {
+    background-color: #cbdfeb;  
+    color:black !important; 
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+.nav-item a:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.textcolor {
+    color: #999999;
 }
 .text-dark {
-    color:black; 
+    color: black;
 }
-.colorcard1 { 
-    background-color: #6610f2;
-    border: none;
+.cart-icons{
+   position: relative;
+   bottom: 13px;
+
+}
+/* Category Cards Container */
+.category-container {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent wrapping to the next line */
+    overflow-x: auto; /* Allow horizontal scrolling if the content overflows */
+    gap: 15px; /* Space between each card */
+    padding: 10px 0; /* Add some top and bottom padding */
+    background: linear-gradient(135deg, rgba(0, 204, 255, 0.6), rgba(51, 51, 255, 0.6), rgba(255, 102, 255, 0.5));
+    background-size: 300% 300%; /* Slightly smaller movement for subtle animation */
+    animation: gradientScroll 12s linear infinite; /* Slower and continuous animation */
+  }
+  
+  /* Gradient background animation */
+  @keyframes gradientScroll {
+    0% {
+      background-position: 0% 0%;
+    }
+    25% {
+      background-position: 50% 50%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    75% {
+      background-position: 50% 50%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+  
+  
+  /* Category Card */
+  .category-card {
+    flex: 0 0 auto; /* Prevent cards from shrinking or growing */
+    width: 150px; /* Set a fixed width for each card */
+    height: 50px; /* Set a fixed height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
     border-radius: 10px;
-    box-shadow: 1px 4px 12px rgba(41, 41, 41, 0.1);
-}
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-left: 120px;
+  }
+  
+  .category-card:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .category-card img {
+    max-width: 80%; /* Ensure the image fits inside the card */
+    max-height: 80%;
+    object-fit: contain;
+  }
+  .no-products-found {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #888;
+  }
+  
+  .cart-icons {
+    position: absolute; /* or relative, depending on the parent container */
+    top: -540px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+    z-index: 9999; /* Ensures it stays above other elements */
+    cursor: pointer;
+  }
+  
+  .cart-icons img {
+    width: 50px;
+    height: 50px;
+  }
+  /* Main container styling */
+.help-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 50px auto;
+  }
+  
+  /* Heading */
+  .help-heading {
+    text-align: center;
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  /* Individual question styling */
+  .question {
+    padding: 20px;
+    margin: 15px 0;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  /* Hover effect for questions */
+  .question:hover {
+    background-color: #e1f5fe;
+    transform: translateY(-3px);
+  }
+  
+  .question h2 {
+    margin: 0;
+    color: #007bff;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  /* Hover effect for question text */
+  .question:hover h2 {
+    color: #003366;
+  }
+  
+  /* Answer section that will be toggled */
+  .answer {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0 20px;
+    margin-top: 10px;
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+    color: #555;
+  }
+  
+  /* Display answer with slide-in effect */
+  .answer.show {
+    max-height: 300px; /* Set a max-height to allow space for text */
+    opacity: 1;
+    padding-top: 10px;
+  }
+  
+  /* Answer text */
+  .answer p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  /* Responsive styling for smaller screens */
+  @media (max-width: 768px) {
+    .help-container {
+      padding: 15px;
+    }
+  
+    .question h2 {
+      font-size: 1em;
+    }
+  }
+/* Additional styling for the extra query form */
+.extra-query {
+    margin-top: 30px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .extra-query h2 {
+    font-size: 1.5em;
+    color: #007bff;
+    margin-bottom: 15px;
+  }
+  
+  .query-textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+    resize: none;
+  }
+  
+  .submit-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .submit-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .thank-you-message {
+    margin-top: 20px;
+    background-color: #d4edda;
+    padding: 10px;
+    border-radius: 5px;
+    color: #155724;
+    font-weight: bold;
+    text-align: center;
+  }
+  /* Styling for the Go Home button */
+
+  
+    
+ 
+    
+  
+  
 
 
   

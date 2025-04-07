@@ -1,6 +1,0 @@
-fetch('http://localhost:5000/users', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json',},
-      body: JSON.stringify(newObj),
-    })
-//json-server --watch db.json --port 5000

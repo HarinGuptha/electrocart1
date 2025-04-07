@@ -6,7 +6,7 @@ function Logincontext({children}) {
     const [loginerr,setloginerr]=useState(null);
     function handleuserlogin(data) {
         const { username, pass } = data;
-        fetch(`http://localhost:5000/users?username=${username}&password=${pass}`, { method: "GET" })
+        fetch(`http://localhost:3000/users?username=${username}&password=${pass}`, { method: "GET" })
           .then(res => res.json())
           .then(users => {
             const matchingUser = users.find(user => user.username === username && user.pass === pass);
