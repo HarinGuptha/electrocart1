@@ -51,8 +51,8 @@ const AddToCart = ({ cart, removeFromCart, clearCart }) => {
           <div className="d-flex justify-content-between align-items-center mb-4">
             <h2 className="mb-0"><i className="bi bi-cart3 me-2"></i> Your Shopping Cart</h2>
             <button className="btn btn-outline-primary" onClick={() => {
-              // Reset any filters or search terms by setting URL parameters
-              navigate('/?reset=true');
+              // Navigate to home and use state to reset filters
+              navigate('/', { state: { resetFilters: true } });
             }}>
               <i className="bi bi-arrow-left me-2"></i> Continue Shopping
             </button>
@@ -63,7 +63,7 @@ const AddToCart = ({ cart, removeFromCart, clearCart }) => {
               <i className="bi bi-cart-x display-1 text-muted mb-3"></i>
               <h4 className="mb-3">Your cart is empty</h4>
               <p className="mb-4 text-muted">Looks like you haven't added any products to your cart yet.</p>
-              <button className="btn btn-custom-primary btn-lg" onClick={() => navigate('/?reset=true')}>
+              <button className="btn btn-custom-primary btn-lg" onClick={() => navigate('/', { state: { resetFilters: true } })}>
                 <i className="bi bi-bag me-2"></i> Start Shopping
               </button>
             </div>
@@ -192,7 +192,7 @@ const AddToCart = ({ cart, removeFromCart, clearCart }) => {
             <p className="mb-4 text-muted">A confirmation email has been sent to your registered email address.</p>
             <button className="btn btn-custom-primary btn-lg px-5" onClick={() => {
               handleClosePopup();
-              navigate('/?reset=true');
+              navigate('/', { state: { resetFilters: true } });
             }}>
               <i className="bi bi-house me-2"></i> Back to Home
             </button>

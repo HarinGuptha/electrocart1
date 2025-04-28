@@ -35,23 +35,22 @@ function Home() {
     { id: 41, name: "Sensors", category: "Sensors", image: "https://rukminim1.flixcart.com/image/300/300/kog30y80/electronic-hobby-kit/6/1/k/pack-of-4-ir-proximity-sensor-for-line-follower-and-obstacle-original-imag2wtgstghxgjg.jpeg" },
 
   ];
-  // Check for reset parameter in URL
+  // Check for reset state from navigation
   React.useEffect(() => {
-    // Get the URL parameters
-    const params = new URLSearchParams(window.location.search);
-    const resetParam = params.get('reset');
+    // Get location state from React Router
+    const location = window.location;
+    const state = location.state;
 
-    // If reset=true is in the URL, clear filters and search
-    if (resetParam === 'true') {
+    // If resetFilters is true in the state, clear filters and search
+    if (state && state.resetFilters) {
       setSelectedCategory(null);
       setSearchTerm('');
       setSearchResults([]);
 
-      // Remove the reset parameter from URL without page refresh
-      const newUrl = window.location.pathname;
-      window.history.replaceState({}, '', newUrl);
+      // Clear the state to prevent resetting on page refresh
+      window.history.replaceState({}, '', location.pathname);
     }
-  }, [setSearchTerm]); // Only run when the component mounts or URL changes
+  }, [setSearchTerm]); // Only run when the component mounts or location changes
 
   // Update search results when searchTerm changes
   React.useEffect(() => {
