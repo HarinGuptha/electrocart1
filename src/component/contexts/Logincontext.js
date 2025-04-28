@@ -6,7 +6,11 @@ function Logincontext({children}) {
     const [loginerr,setloginerr]=useState(null);
     function handleuserlogin(data) {
         const { username, pass } = data;
-        fetch(`http://localhost:3000/users?username=${username}&password=${pass}`, { method: "GET" })
+        // Properly encode the parameters to prevent URI malformed errors
+        const encodedUsername = encodeURIComponent(username);
+        const encodedPassword = encodeURIComponent(pass);
+
+        fetch(`http://localhost:3000/users?username=${encodedUsername}&password=${encodedPassword}`, { method: "GET" })
           .then(res => res.json())
           .then(users => {
             const matchingUser = users.find(user => user.username === username && user.pass === pass);
@@ -18,7 +22,10 @@ function Logincontext({children}) {
               setloginerr({ message: "Invalid username or password" });
             }
           })
-          .catch(err => setloginerr(err));
+          .catch(err => {
+            console.error('Login error:', err);
+            setloginerr({ message: "An error occurred during login. Please try again." });
+          });
       }
     function userlogout(){
       setcurrentuser(null);

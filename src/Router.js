@@ -7,7 +7,7 @@ import Register from './component/routing/Register';
 import Userprofile from './component/routing/Userprofile';
 import RoutingError from './component/routing/RoutingError';
 import Aboutus from './component/routing/Aboutus';
-import Addtocart from './component/routing/Addtocart';
+// Addtocart component is not needed as we're using Home for cart
 import Help from './component/routing/Help';
 
 const browserRouterObject = createBrowserRouter([
@@ -21,7 +21,7 @@ const browserRouterObject = createBrowserRouter([
       { path: "login", element: <Login /> },
       { path: "userprofile/:username", element: <Userprofile /> },
       { path: "aboutus", element: <Aboutus /> },
-      { path: "cart", element: <Addtocart /> },
+      { path: "cart", element: <Home /> },
       { path: "help", element: <Help /> },
     ],
   },

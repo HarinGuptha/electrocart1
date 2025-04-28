@@ -1,69 +1,51 @@
 /* Card container (Register card) */
 .register-card {
   position: relative;
-  border-radius: 10px;
+  border-radius: 8px;
   width: 80%;
   max-width: 800px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #dee2e6;
   margin: 50px auto;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(0, 204, 255, 0.6), rgba(51, 51, 255, 0.6), rgba(255, 102, 255, 0.5));
+  background-color: #ffffff;
 }
 
 /* Marquee container fixed within the card */
 .marquee-container {
+  width: 100%;
+  background-color: #3498db;
+  padding: 10px 0;
   overflow: hidden;
-  width: 100%; 
-  background-color: #333;
 }
 
-/* Scrolling content */
+/* Marquee content */
 .marquee-content {
-  display: flex;
-  animation: scroll 10s linear infinite;
-  padding-top: 10px;
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee 20s linear infinite;
 }
 
-/* Marquee text with color changing animation */
+/* Marquee text */
 .marquee-text {
   color: #fff;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
-  white-space: nowrap;
-  padding-left: 20px;
-  animation: colorChange 10s linear infinite, scroll 10s linear infinite;
+  margin: 0;
+  padding: 0 20px;
 }
 
 .thank-you {
-  margin-left: 250px; /* Adjust this value to change the space between the phrases */
-}
-/* Scroll animation */
-@keyframes scroll {
-  0% {
-      transform: translateX(100%);
-  }
-  100% {
-      transform: translateX(-100%);
-  }
+  margin-left: 20px;
 }
 
-/* Text color change animation */
-@keyframes colorChange {
+/* Marquee animation */
+@keyframes marquee {
   0% {
-      color: #FF6347; /* Tomato */
-  }
-  25% {
-      color: #32CD32; /* Lime Green */
-  }
-  50% {
-      color: #1E90FF; /* Dodger Blue */
-  }
-  75% {
-      color: #FFD700; /* Gold */
+    transform: translateX(100%);
   }
   100% {
-      color: #FF6347; /* Tomato */
+    transform: translateX(-100%);
   }
 }
 
@@ -83,6 +65,5 @@
 }
 
 
-  
-  
-  
+
+
